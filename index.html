@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 设置视口，确保在移动设备上正确显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONITY PROOF MASTERS</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <!-- 导航栏开始 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- 网站Logo部分 -->
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <!-- 蓝色部分Logo -->
+                    <!-- <span class="blue-part"></span> -->
+                    <!-- 黄色部分Logo -->
+                    <!-- <span class="yellow-part"></span> -->
+                     <!-- 公司log -->
+                    <img src="./log.png" alt="公司Logo" class="gslog">
+                </div>
+                <div class="logo-text">
+                    <span>橙熟云仓</span>
+                    <span>有加速度的一站式物流服务</span>
+                </div>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <ul class="nav-menu">
+                <!-- 首页导航项 -->
+                <!-- <li class="nav-item"><a href="#" class="nav-link">网站首页</a></li> -->
+                
+                <!-- 公司简介导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link active">公司简介</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">公司概况</a>
+                        <a href="#" class="dropdown-item">发展历程</a>
+                        <a href="#" class="dropdown-item">荣誉资质</a>
+                        <a href="#" class="dropdown-item">合作单位</a>
+                    </div>
+                </li>
+                
+                <!-- 产品中心导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">产品中心</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">产品分类</a>
+                        <a href="#" class="dropdown-item">热销产品</a>
+                        <a href="#" class="dropdown-item">新品上市</a>
+                        <a href="#" class="dropdown-item">产品定制</a>
+                    </div>
+                </li>
+                
+                <!-- 服务保障导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">服务保障</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">售后服务</a>
+                        <a href="#" class="dropdown-item">技术支持</a>
+                        <a href="#" class="dropdown-item">质量保证</a>
+                        <a href="#" class="dropdown-item">服务承诺</a>
+                    </div>
+                </li>
+                
+                <!-- 客户案例导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">客户案例</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">行业案例</a>
+                        <a href="#" class="dropdown-item">成功案例</a>
+                        <a href="#" class="dropdown-item">客户评价</a>
+                        <a href="#" class="dropdown-item">合作伙伴</a>
+                    </div>
+                </li>
+                
+                <!-- 新闻中心导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">新闻中心</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">公司新闻</a>
+                        <a href="#" class="dropdown-item">行业动态</a>
+                        <a href="#" class="dropdown-item">媒体报道</a>
+                        <a href="#" class="dropdown-item">活动公告</a>
+                    </div>
+                </li>
+                
+                <!-- 招贤纳士导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">招贤纳士</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">招聘职位</a>
+                        <a href="#" class="dropdown-item">人才理念</a>
+                        <a href="#" class="dropdown-item">员工福利</a>
+                        <a href="#" class="dropdown-item">加入我们</a>
+                    </div>
+                </li>
+                
+                <!-- 联系我们导航项，带下拉菜单 -->
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">联系我们</a>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">联系方式</a>
+                        <a href="#" class="dropdown-item">在线留言</a>
+                        <a href="https://surl.amap.com/rHM9SLb1r8VE" class="dropdown-item">地图导航</a>
+                        <a href="#" class="dropdown-item">商务合作</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <!-- 搜索框部分 -->
+            <div class="nav-search">
+                <div class="search-icon" id="searchToggle">
+                    <!-- 搜索图标SVG -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="search-box" id="searchBox">
+                    <input type="text" placeholder="搜索...">
+                </div>
+            </div>
+            
+            <!-- 移动端汉堡菜单按钮 -->
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面内容区域 -->
+    <div class="content">
+        <h1>广州橙熟供应链管理有限公司</h1>
+        <p>欢迎访问广州橙熟供应链管理有限公司官方网站。我们是一家专业提供高质量解决方案的公司，致力于为客户提供最优质的服务。</p>
+        
+        <!-- <div class="content-box">
+            <h2>导航菜单说明</h2>
+            <p>现在所有主要导航项都配备了下拉菜单功能。将鼠标悬停在导航项上可以查看相关子菜单选项。</p>
+            <p>我们拥有多年的行业经验，专注于技术创新和客户服务，已经为众多企业提供了专业的解决方案。</p>
+        </div> -->
+    </div>
+
+    <!-- 引入外部JavaScript文件 -->
+    <script src="script.js"></script>
+</body>
+</html>
