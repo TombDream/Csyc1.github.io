@@ -1,110 +1,363 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 获取DOM元素
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const searchToggle = document.getElementById('searchToggle');
-    const searchBox = document.getElementById('searchBox');
-    const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* 导航栏容器 */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Logo样式 */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-icon {
+    display: flex;
+    margin-right: 10px;
+}
+
+.blue-part {
+    width: 20px;
+    height: 30px;
+    background-color: #2c7be5;
+    display: block;
+    border-radius: 50% 0 0 50%;
+}
+
+.yellow-part {
+    width: 20px;
+    height: 30px;
+    background-color: #f6c343;
+    display: block;
+    border-radius: 0 50% 50% 0;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-text span:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.logo-text span:last-child {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+
+/* 导航菜单 */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin: 0 15px;
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #777;
+    font-size: 15px;
+    transition: color 0.3s;
+    position: relative;
+    padding: 5px 0;
+    display: block;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #2c7be5;
+}
+
+.nav-link.active {
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #2c7be5;
+}
+
+/* 下拉菜单 */
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 15px 0;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    display: block;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #2c7be5;
+    padding-left: 25px;
+}
+
+/* 搜索框 */
+.nav-search {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    cursor: pointer;
+    color: #777;
+    padding: 5px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.search-icon:hover {
+    color: #2c7be5;
+}
+
+.search-box {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-box.active {
+    width: 200px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px 15px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* 汉堡菜单 */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    justify-content: space-between;
+    padding: 5px;
+    z-index: 1001;
+    position: relative;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 内容区域 */
+.content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.content h1 {
+    color: #2c7be5;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.content p {
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.content-box {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+.content-box h2 {
+    color: #2c7be5;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f6c343;
+}
+
+/* 移动端样式 */
+@media screen and (max-width: 950px) {
+    .hamburger {
+        display: flex;
+    }
     
-    // 汉堡菜单点击事件
-    hamburger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        // 关闭搜索框当菜单打开时
-        searchBox.classList.remove('active');
-        
-        // 关闭所有下拉菜单
-        dropdownItems.forEach(item => {
-            item.classList.remove('active');
-            item.querySelector('.dropdown-content').style.display = 'none';
-        });
-    });
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        z-index: 999;
+    }
     
-    // 搜索图标点击事件
-    searchToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        searchBox.classList.toggle('active');
-        
-        if (searchBox.classList.contains('active')) {
-            setTimeout(() => {
-                searchBox.querySelector('input').focus();
-            }, 300);
-            
-            // 关闭菜单当搜索框打开时
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            
-            // 关闭所有下拉菜单
-            dropdownItems.forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.dropdown-content').style.display = 'none';
-            });
-        }
-    });
+    .nav-menu.active {
+        left: 0;
+    }
     
-    // 移动端下拉菜单点击事件
-    dropdownItems.forEach(item => {
-        const link = item.querySelector('.nav-link');
-        
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 950) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // 关闭其他下拉菜单
-                dropdownItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.dropdown-content').style.display = 'none';
-                    }
-                });
-                
-                // 切换当前下拉菜单
-                item.classList.toggle('active');
-                const dropdown = item.querySelector('.dropdown-content');
-                dropdown.style.display = item.classList.contains('active') ? 'block' : 'none';
-            }
-        });
-    });
+    .nav-item {
+        margin: 15px 0;
+        width: 100%;
+    }
     
-    // 点击页面其他区域关闭所有弹出元素
-    document.addEventListener('click', function(e) {
-        // 关闭搜索框
-        if (!searchToggle.contains(e.target) && !searchBox.contains(e.target)) {
-            searchBox.classList.remove('active');
-        }
-        
-        // 关闭菜单和下拉菜单
-        if (window.innerWidth <= 950) {
-            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-            
-            // 关闭所有下拉菜单当点击非下拉区域
-            if (!e.target.closest('.dropdown')) {
-                dropdownItems.forEach(item => {
-                    item.classList.remove('active');
-                    item.querySelector('.dropdown-content').style.display = 'none';
-                });
-            }
-        }
-    });
+    .nav-link {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
     
-    // 窗口大小改变事件
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 950) {
-            // 重置移动端菜单状态
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            
-            // 重置下拉菜单显示状态
-            dropdownItems.forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.dropdown-content').style.display = '';
-            });
-        }
-    });
-});
+    .dropdown-content {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        display: none;
+        margin-top: 0;
+        background-color: #f8f9fa;
+        transition: none;
+    }
+    
+    .dropdown-item {
+        padding: 12px 20px;
+        text-align: center;
+    }
+    
+    .search-box {
+        top: 100%;
+        right: 0;
+        transform: translateY(0);
+        z-index: 1000;
+    }
+    
+    .search-box.active {
+        width: 100%;
+    }
+    
+    /* 移动端下拉菜单点击展开 */
+    .nav-item.dropdown.active .dropdown-content {
+        display: block;
+    }
+}
+
+/* 小屏幕优化 */
+@media screen and (max-width: 480px) {
+    .logo-text span:first-child {
+        font-size: 16px;
+    }
+    
+    .logo-text span:last-child {
+        font-size: 10px;
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
+}
